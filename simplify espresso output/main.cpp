@@ -94,65 +94,66 @@ int main(int argc, const char * argv[]) {
                   ofstream outputFileStream(argv[2]);
                   outputFileStream << dataToBeOutputted;
                   
-                  unordered_map<string, bool> inputsNormalAndInverted;
-                  cout << "Enter boolean values for the following inputs:" << endl;
-                  cout << inputLabels.at(0);
-                  for (int i = 1; i < numInputs; i++) {
-                        cout << " " << inputLabels.at(i);
-                  }
-                  cout << endl;
-                  
-                  for (int i = 0; i < numInputs; i++) {
-                        string testForInputFiltering;
-                        cin >> testForInputFiltering;
+                  while (1) {
+                        unordered_map<string, bool> inputsNormalAndInverted;
+                        cout << "Enter boolean values for the following inputs:" << endl;
+                        cout << inputLabels.at(0);
+                        for (int i = 1; i < numInputs; i++) {
+                              cout << " " << inputLabels.at(i);
+                        }
+                        cout << endl;
                         
-                        while (testForInputFiltering.compare("1") && testForInputFiltering.compare("0")) {
-                              
-                              transform(testForInputFiltering.begin(), testForInputFiltering.end(), testForInputFiltering.begin(), ::tolower);
-                              if (!testForInputFiltering.compare(":q")) {
-                                    return 1;
-                              }
-                              
-                              cout << "Please try again..." << endl;
+                        for (int i = 0; i < numInputs; i++) {
+                              string testForInputFiltering;
                               cin >> testForInputFiltering;
+                              
+                              while (testForInputFiltering.compare("1") && testForInputFiltering.compare("0")) {
+                                    
+                                    transform(testForInputFiltering.begin(), testForInputFiltering.end(), testForInputFiltering.begin(), ::tolower);
+                                    
+                                    if (!testForInputFiltering.compare(":q")) {
+                                          return 0;
+                                    }
+                                    
+                                    cout << "Please try again..." << endl;
+                                    cin >> testForInputFiltering;
+                              }
+                              
+                              if (!testForInputFiltering.compare("1")) {
+                                    inputsNormalAndInverted[inputLabels.at(i)] = 1;
+                                    inputsNormalAndInverted[inputLabels.at(i) + "'"] = 0;
+                              }
+                              else if (!testForInputFiltering.compare("0")) {
+                                    inputsNormalAndInverted[inputLabels.at(i)] = 0;
+                                    inputsNormalAndInverted[inputLabels.at(i) + "'"] = 1;
+                              }
                         }
                         
-                        if (!testForInputFiltering.compare("1")) {
-                              inputsNormalAndInverted[inputLabels.at(i)] = 1;
-                              inputsNormalAndInverted[inputLabels.at(i) + "'"] = 0;
-                        }
-                        else if (!testForInputFiltering.compare("0")) {
-                              inputsNormalAndInverted[inputLabels.at(i)] = 0;
-                              inputsNormalAndInverted[inputLabels.at(i) + "'"] = 1;
-                        }
-                  }
-                  
-                  vector<bool> productsPostSim;
-                  for (int i = 0; i < numProducts; i++) {
-                        productsPostSim.push_back(1);
-                        for (int j = 0; j < products[i].size(); j++) {
-//                              cout  << products[i][j] << " "
-//                                    << inputsNormalAndInverted[products[i][j]] << endl;
-                              if(!inputsNormalAndInverted[products[i][j]]){
-                                    productsPostSim.at(i) = 0;
-                                    break;
+                        vector<bool> productsPostSim;
+                        for (int i = 0; i < numProducts; i++) {
+                              productsPostSim.push_back(1);
+                              for (int j = 0; j < products[i].size(); j++) {
+                                    if(!inputsNormalAndInverted[products[i][j]]){
+                                          productsPostSim.at(i) = 0;
+                                          break;
+                                    }
                               }
                         }
-                  }
-                  
-                  unordered_map<string, bool> outputsPostSim;
-                  for (int i = 0; i < numOutputs; i++) {
-                        outputsPostSim[outputLabels[i][0]] = 0;
-                        for (int j = 1; j < outputLabels[i].size(); j++) {
-                              if(productsPostSim.at(stoi(outputLabels[i][j]) - 1)){
-                                    outputsPostSim[outputLabels[i][0]] = 1;
-                                    break;
+                        
+                        unordered_map<string, bool> outputsPostSim;
+                        for (int i = 0; i < numOutputs; i++) {
+                              outputsPostSim[outputLabels[i][0]] = 0;
+                              for (int j = 1; j < outputLabels[i].size(); j++) {
+                                    if(productsPostSim.at(stoi(outputLabels[i][j]) - 1)){
+                                          outputsPostSim[outputLabels[i][0]] = 1;
+                                          break;
+                                    }
                               }
-                        }
-                        cout  << outputLabels[i][0] << ": "
+                              cout  << outputLabels[i][0] << ": "
                               << outputsPostSim[outputLabels[i][0]] << endl;
+                        }
+                        
                   }
-                  
                   return 0;
             }
       }
