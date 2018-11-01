@@ -11,14 +11,14 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
       
-      string inputFileName = argv[1];
-//      cout << inputFileName << endl;
-      ifstream inputFileStream(inputFileName.c_str());
+      ifstream inputFileStream(argv[1]);
       string inputLine;
       string dataToBeOutputted;
       int numInputs, numOutputs, numProducts;
@@ -48,30 +48,32 @@ int main(int argc, const char * argv[]) {
                   while (s1 >> tempWord) {
                         vector<string> outputLabel;
                         outputLabel.push_back(tempWord);
-//                        cout << outputLabel.at(0) << endl;
                         outputLabels.push_back(outputLabel);
-//                        cout << outputLabel.size() << endl;
-//                        cout << outputLabels.size() << endl;
                   }
             }
             else if (!firstWord.compare(".p")) {
                   s1 >> numProducts;
                   
+                  vector<vector<string>> products;
                   for (int i = 0; i < numProducts; i++) {
                         getline(inputFileStream, inputLine);
-                        stringstream s2(inputLine);
                         string inputs, outputs;
+                        stringstream s2(inputLine);
                         s2 >> inputs >> outputs;
-                        string productForCompilation, prettyProduct;
+                        vector<string> temp;
+                        string prettyProduct;
                         for (int j = 0; j < numInputs; j++) {
                               if (inputs.at(j) == '1') {
-                                    productForCompilation += inputLabels.at(j) + " * ";
+                                    temp.push_back(inputLabels.at(j));
+                                    prettyProduct += inputLabels.at(j) + " * ";
                               }
                               else if (inputs.at(j) == '0') {
-                                    productForCompilation += inputLabels.at(j) + "' * ";
+                                    temp.push_back(inputLabels.at(j) + "'");
+                                    prettyProduct += inputLabels.at(j) + "' * ";
                               }
                         }
-                        dataToBeOutputted += to_string(i + 1) + ") " + productForCompilation.substr(0, productForCompilation.size() - 3) + "\n";
+                        products.push_back(temp);
+                        dataToBeOutputted += to_string(i + 1) + ") " + prettyProduct.substr(0, prettyProduct.size() - 3) + "\n";
                         for (int j = 0; j < numOutputs; j++) {
                               if (outputs.at(j) == '1') {
                                     outputLabels[j].push_back(to_string(i + 1));
@@ -87,12 +89,70 @@ int main(int argc, const char * argv[]) {
                         prettyOutputs += "\n";
                   }
                   dataToBeOutputted = prettyOutputs + "\n" + dataToBeOutputted;
-                  cout << dataToBeOutputted;
+                  cout << dataToBeOutputted << endl;
                   
-                  string outputFileName = argv[2];
-//                  cout << outputFileName << endl;
-                  ofstream outputFileStream(outputFileName.c_str());
+                  ofstream outputFileStream(argv[2]);
                   outputFileStream << dataToBeOutputted;
+                  
+                  unordered_map<string, bool> inputsNormalAndInverted;
+                  cout << "Enter boolean values for the following inputs:" << endl;
+                  cout << inputLabels.at(0);
+                  for (int i = 1; i < numInputs; i++) {
+                        cout << " " << inputLabels.at(i);
+                  }
+                  cout << endl;
+                  
+                  for (int i = 0; i < numInputs; i++) {
+                        string testForInputFiltering;
+                        cin >> testForInputFiltering;
+                        
+                        while (testForInputFiltering.compare("1") && testForInputFiltering.compare("0")) {
+                              
+                              transform(testForInputFiltering.begin(), testForInputFiltering.end(), testForInputFiltering.begin(), ::tolower);
+                              if (!testForInputFiltering.compare(":q")) {
+                                    return 1;
+                              }
+                              
+                              cout << "Please try again..." << endl;
+                              cin >> testForInputFiltering;
+                        }
+                        
+                        if (!testForInputFiltering.compare("1")) {
+                              inputsNormalAndInverted[inputLabels.at(i)] = 1;
+                              inputsNormalAndInverted[inputLabels.at(i) + "'"] = 0;
+                        }
+                        else if (!testForInputFiltering.compare("0")) {
+                              inputsNormalAndInverted[inputLabels.at(i)] = 0;
+                              inputsNormalAndInverted[inputLabels.at(i) + "'"] = 1;
+                        }
+                  }
+                  
+                  vector<bool> productsPostSim;
+                  for (int i = 0; i < numProducts; i++) {
+                        productsPostSim.push_back(1);
+                        for (int j = 0; j < products[i].size(); j++) {
+//                              cout  << products[i][j] << " "
+//                                    << inputsNormalAndInverted[products[i][j]] << endl;
+                              if(!inputsNormalAndInverted[products[i][j]]){
+                                    productsPostSim.at(i) = 0;
+                                    break;
+                              }
+                        }
+                  }
+                  
+                  unordered_map<string, bool> outputsPostSim;
+                  for (int i = 0; i < numOutputs; i++) {
+                        outputsPostSim[outputLabels[i][0]] = 0;
+                        for (int j = 1; j < outputLabels[i].size(); j++) {
+                              if(productsPostSim.at(stoi(outputLabels[i][j]) - 1)){
+                                    outputsPostSim[outputLabels[i][0]] = 1;
+                                    break;
+                              }
+                        }
+                        cout  << outputLabels[i][0] << ": "
+                              << outputsPostSim[outputLabels[i][0]] << endl;
+                  }
+                  
                   return 0;
             }
       }
