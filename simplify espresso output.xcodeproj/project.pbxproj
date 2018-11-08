@@ -23,8 +23,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DE2E45B221940CBD00D07EC2 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		DE53BD6421940F7200122369 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		DEBB02D42188EE9200E3E1FA /* simplify espresso output */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "simplify espresso output"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEBB02D72188EE9200E3E1FA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,8 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				DEBB02D72188EE9200E3E1FA /* main.cpp */,
-				DE2E45B221940CBD00D07EC2 /* LICENSE.txt */,
-				DE53BD6421940F7200122369 /* README.txt */,
 			);
 			path = "simplify espresso output";
 			sourceTree = "<group>";
