@@ -124,7 +124,7 @@ int main(int argc, const char * argv[]) {
 string promptForRunMode() {
       cout << "Get ready to simplify your Espresso output!\n\n";
       
-      cout << "0) Generate a simplified Espresso output file" << endl;
+      cout << "0) Simplify Espresso output" << endl;
       cout << "1) Simulate combinational logic" << endl;
       cout << "2) Perform functions 0 and 1" << endl;
       cout << "q) Quit\n\n";
