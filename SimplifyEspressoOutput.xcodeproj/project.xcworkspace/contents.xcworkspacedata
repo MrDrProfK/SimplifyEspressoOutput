@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:simplify espresso output.xcodeproj">
+      location = "self:/Users/aaronknoll/Desktop/SimplifyEspressoOutput/SimplifyEspressoOutput.xcodeproj">
    </FileRef>
 </Workspace>

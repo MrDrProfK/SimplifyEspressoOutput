@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  Simplify Espresso Output
+//  SimplifyEspressoOutput
 //
 //  Created by Aaron Knoll on 10/30/18.
 //  Licensed under the GNU GPLv3
@@ -10,7 +10,6 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include <string>
 #include <vector>
 #include <unordered_map>
 #include <algorithm>

@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DEBB02D42188EE9200E3E1FA /* simplify espresso output */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "simplify espresso output"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEBB02D42188EE9200E3E1FA /* SimplifyEspressoOutput */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimplifyEspressoOutput; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEBB02D72188EE9200E3E1FA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,7 +41,7 @@
 		DEBB02CB2188EE9200E3E1FA = {
 			isa = PBXGroup;
 			children = (
-				DEBB02D62188EE9200E3E1FA /* simplify espresso output */,
+				DEBB02D62188EE9200E3E1FA /* src */,
 				DEBB02D52188EE9200E3E1FA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,25 +49,25 @@
 		DEBB02D52188EE9200E3E1FA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DEBB02D42188EE9200E3E1FA /* simplify espresso output */,
+				DEBB02D42188EE9200E3E1FA /* SimplifyEspressoOutput */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DEBB02D62188EE9200E3E1FA /* simplify espresso output */ = {
+		DEBB02D62188EE9200E3E1FA /* src */ = {
 			isa = PBXGroup;
 			children = (
 				DEBB02D72188EE9200E3E1FA /* main.cpp */,
 			);
-			path = "simplify espresso output";
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DEBB02D32188EE9200E3E1FA /* simplify espresso output */ = {
+		DEBB02D32188EE9200E3E1FA /* SimplifyEspressoOutput */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DEBB02DB2188EE9200E3E1FA /* Build configuration list for PBXNativeTarget "simplify espresso output" */;
+			buildConfigurationList = DEBB02DB2188EE9200E3E1FA /* Build configuration list for PBXNativeTarget "SimplifyEspressoOutput" */;
 			buildPhases = (
 				DEBB02D02188EE9200E3E1FA /* Sources */,
 				DEBB02D12188EE9200E3E1FA /* Frameworks */,
@@ -77,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = "simplify espresso output";
+			name = SimplifyEspressoOutput;
 			productName = "simplify espresso output";
-			productReference = DEBB02D42188EE9200E3E1FA /* simplify espresso output */;
+			productReference = DEBB02D42188EE9200E3E1FA /* SimplifyEspressoOutput */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -96,7 +96,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DEBB02CF2188EE9200E3E1FA /* Build configuration list for PBXProject "simplify espresso output" */;
+			buildConfigurationList = DEBB02CF2188EE9200E3E1FA /* Build configuration list for PBXProject "SimplifyEspressoOutput" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -108,7 +108,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DEBB02D32188EE9200E3E1FA /* simplify espresso output */,
+				DEBB02D32188EE9200E3E1FA /* SimplifyEspressoOutput */,
 			);
 		};
 /* End PBXProject section */
@@ -255,7 +255,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DEBB02CF2188EE9200E3E1FA /* Build configuration list for PBXProject "simplify espresso output" */ = {
+		DEBB02CF2188EE9200E3E1FA /* Build configuration list for PBXProject "SimplifyEspressoOutput" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEBB02D92188EE9200E3E1FA /* Debug */,
@@ -264,7 +264,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DEBB02DB2188EE9200E3E1FA /* Build configuration list for PBXNativeTarget "simplify espresso output" */ = {
+		DEBB02DB2188EE9200E3E1FA /* Build configuration list for PBXNativeTarget "SimplifyEspressoOutput" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEBB02DC2188EE9200E3E1FA /* Debug */,
